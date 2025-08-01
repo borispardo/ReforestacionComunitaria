@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Comunidad.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -144,8 +145,19 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="EditarComunidad.aspx" />
+    <Content Include="EditarEspecie.aspx" />
+    <Content Include="EditarProyecto.aspx" />
+    <Content Include="EliminarComunidad.aspx" />
+    <Content Include="EliminarEspecie.aspx" />
+    <Content Include="EliminarProyecto.aspx" />
+    <Content Include="Especie.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="NuevaComunidad.aspx" />
+    <Content Include="NuevaEspecie.aspx" />
+    <Content Include="NuevoProyecto.aspx" />
+    <Content Include="Proyecto.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -214,6 +226,13 @@
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Comunidad.aspx.designer.vb">
+      <DependentUpon>Comunidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Comunidad.aspx.vb">
+      <DependentUpon>Comunidad.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
@@ -221,6 +240,10 @@
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Datos\ComunidadDAL.vb" />
+    <Compile Include="Datos\Conexion.vb" />
+    <Compile Include="Datos\EspecieDAL.vb" />
+    <Compile Include="Datos\ProyectoDAL.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -228,9 +251,64 @@
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EditarComunidad.aspx.designer.vb">
+      <DependentUpon>EditarComunidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarComunidad.aspx.vb">
+      <DependentUpon>EditarComunidad.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EditarEspecie.aspx.designer.vb">
+      <DependentUpon>EditarEspecie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarEspecie.aspx.vb">
+      <DependentUpon>EditarEspecie.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EditarProyecto.aspx.designer.vb">
+      <DependentUpon>EditarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarProyecto.aspx.vb">
+      <DependentUpon>EditarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EliminarComunidad.aspx.designer.vb">
+      <DependentUpon>EliminarComunidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarComunidad.aspx.vb">
+      <DependentUpon>EliminarComunidad.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EliminarEspecie.aspx.designer.vb">
+      <DependentUpon>EliminarEspecie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarEspecie.aspx.vb">
+      <DependentUpon>EliminarEspecie.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EliminarProyecto.aspx.designer.vb">
+      <DependentUpon>EliminarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarProyecto.aspx.vb">
+      <DependentUpon>EliminarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Entidades\Comunidad.vb" />
+    <Compile Include="Entidades\Especie.vb" />
+    <Compile Include="Entidades\Proyecto.vb" />
+    <Compile Include="Especie.aspx.designer.vb">
+      <DependentUpon>Especie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Especie.aspx.vb">
+      <DependentUpon>Especie.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Comunidad.vb" />
+    <Compile Include="Modelos\Especie.vb" />
+    <Compile Include="Modelos\Proyecto.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -249,6 +327,34 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NuevaComunidad.aspx.designer.vb">
+      <DependentUpon>NuevaComunidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaComunidad.aspx.vb">
+      <DependentUpon>NuevaComunidad.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="NuevaEspecie.aspx.designer.vb">
+      <DependentUpon>NuevaEspecie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaEspecie.aspx.vb">
+      <DependentUpon>NuevaEspecie.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="NuevoProyecto.aspx.designer.vb">
+      <DependentUpon>NuevoProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoProyecto.aspx.vb">
+      <DependentUpon>NuevoProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Proyecto.aspx.designer.vb">
+      <DependentUpon>Proyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Proyecto.aspx.vb">
+      <DependentUpon>Proyecto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>
@@ -306,9 +412,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\" />
-    <Folder Include="Datos\" />
     <Folder Include="Docs\" />
-    <Folder Include="Entidades\" />
     <Folder Include="Paginas\" />
     <Folder Include="Servicios\" />
   </ItemGroup>
