@@ -1,4 +1,6 @@
 ﻿
+Imports ReforestacionComunitaria.ReforestacionComunitaria.Modelos
+
 Partial Class ComunidadPAR
     Inherits System.Web.UI.Page
 

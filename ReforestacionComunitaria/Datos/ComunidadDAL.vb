@@ -1,5 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
+Imports ReforestacionComunitaria.ReforestacionComunitaria.Modelos
+
 Public Class ComunidadDAL
     Public Shared Function ObtenerTodas() As List(Of ComunidadPa)
         Dim lista As New List(Of ComunidadPa)
@@ -7,25 +9,27 @@ Public Class ComunidadDAL
         Using con As New SqlConnection(Conexion.Cadena)
             Using cmd As New SqlCommand(query, con)
                 con.Open()
-                Dim reader = cmd.ExecuteReader()
-                While reader.Read()
-                    lista.Add(New ComunidadPa With {
-                        .Id = CInt(reader("Id")),
-                        .Nombre = reader("Nombre").ToString(),
-                        .Latitud = CDec(reader("Latitud")),
-                        .Longitud = CDec(reader("Longitud")),
-                        .Descripcion = reader("Descripcion").ToString(),
-                        .FechaCreacion = CDate(reader("FechaCreacion")),
-                        .FechaActualizacion = CDate(reader("FechaActualizacion"))
-                    })
-                End While
+                Using reader = cmd.ExecuteReader()
+                    While reader.Read()
+                        lista.Add(New ComunidadPa With {
+                            .Id = CInt(reader("Id")),
+                            .Nombre = reader("Nombre").ToString(),
+                            .Latitud = CDec(reader("Latitud")),
+                            .Longitud = CDec(reader("Longitud")),
+                            .Descripcion = reader("Descripcion").ToString(),
+                            .FechaCreacion = CDate(reader("FechaCreacion")),
+                            .FechaActualizacion = CDate(reader("FechaActualizacion"))
+                        })
+                    End While
+                End Using
             End Using
         End Using
         Return lista
     End Function
 
-    Public Shared Sub Insertar(comunidad As ComunidadPa)
-        Dim query As String = "INSERT INTO Comunidad (Nombre, Latitud, Longitud, Descripcion, FechaCreacion, FechaActualizacion) VALUES (@Nombre, @Latitud, @Longitud, @Descripcion, GETDATE(), GETDATE())"
+    Public Shared Sub Insertar(comunidad As Comunidad)
+        Dim query As String = "INSERT INTO Comunidad (Nombre, Latitud, Longitud, Descripcion, FechaCreacion, FechaActualizacion) " &
+                              "VALUES (@Nombre, @Latitud, @Longitud, @Descripcion, GETDATE(), GETDATE())"
         Using con As New SqlConnection(Conexion.Cadena)
             Using cmd As New SqlCommand(query, con)
                 cmd.Parameters.AddWithValue("@Nombre", comunidad.Nombre)
@@ -37,6 +41,4 @@ Public Class ComunidadDAL
             End Using
         End Using
     End Sub
-
-    ' También puedes crear Actualizar() y Eliminar() si deseas que lo haga ya.
 End Class
