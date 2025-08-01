@@ -104,4 +104,22 @@ Public Class ComunidadDAL
         Return comunidad
     End Function
 
+    Public Shared Function ObtenerNombrePorId(id As Integer) As String
+        Dim query As String = "SELECT Nombre FROM Comunidad WHERE Id = @Id"
+        Using con As New SqlConnection(Conexion.Cadena)
+            Using cmd As New SqlCommand(query, con)
+                cmd.Parameters.AddWithValue("@Id", id)
+                con.Open()
+                Dim result = cmd.ExecuteScalar()
+                If result IsNot Nothing Then
+                    Return result.ToString()
+                Else
+                    Return String.Empty
+                End If
+            End Using
+        End Using
+    End Function
+
+
+
 End Class

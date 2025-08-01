@@ -46,6 +46,17 @@ Public Class ProyectoDAL
         End Using
     End Sub
 
+    Public Shared Sub Eliminar(id As Integer)
+        Dim query As String = "DELETE FROM ProyectoReforestacion WHERE Id = @Id"
+        Using con As New SqlConnection(Conexion.Cadena)
+            Using cmd As New SqlCommand(query, con)
+                cmd.Parameters.AddWithValue("@Id", id)
+                con.Open()
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
+
     Public Shared Sub Actualizar(proyecto As ProyectoRe)
         Dim query As String = "UPDATE ProyectoReforestacion SET " &
                               "Nombre = @Nombre, " &
