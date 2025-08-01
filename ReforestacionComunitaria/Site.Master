@@ -1,70 +1,96 @@
-﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="ReforestacionComunitaria.SiteMaster" %>
+﻿<%@ Master Language="vb" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="ReforestacionComunitaria.Site" %>
 
 <!DOCTYPE html>
-
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><asp:ContentPlaceHolder ID="title" runat="server" /></title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        body.light-mode {
+            background-color: #fff;
+            color: #212529;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #e1e1e1;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-light-mode {
+            background-color: #e3f2fd;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-dark-mode {
+            background-color: #343a40;
+            transition: background-color 0.3s ease;
+        }
+        /* Ajustes para links en modo oscuro */
+        body.dark-mode a,
+        body.dark-mode .navbar-brand {
+            color: #f8f9fa;
+        }
+        body.dark-mode a:hover {
+            color: #adb5bd;
+        }
+        /* Más estilos personalizados aquí si quieres */
+    </style>
 
+    <asp:ContentPlaceHolder ID="headContent" runat="server" />
 </head>
-<body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Nombre de la aplicación</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
+<body class="light-mode">
+    <form id="form1" runat="server" class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-light-mode">
+            <a class="navbar-brand font-weight-bold" href="Default.aspx">Reforestación Comunitaria</a>
+            <button class="btn btn-outline-secondary ml-auto" id="btnToggleTheme" type="button" aria-label="Alternar tema claro/oscuro" title="Alternar tema claro/oscuro">🌙</button>
         </nav>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
-            </footer>
-        </div>
+
+        <main role="main" class="flex-grow-1 container my-4">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+
+        <footer class="bg-light text-center text-muted py-3 mt-auto">
+            &copy; 2025 Reforestación Comunitaria. Todos los derechos reservados.
+        </footer>
     </form>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-    </asp:PlaceHolder>
+
+    <!-- JQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Tema claro / oscuro
+        $(function () {
+            const btn = $('#btnToggleTheme');
+            const body = $('body');
+            const navbar = $('.navbar');
+
+            // Cargar tema guardado o default claro
+            if (localStorage.getItem('theme') === 'dark') {
+                body.removeClass('light-mode').addClass('dark-mode');
+                navbar.removeClass('navbar-light navbar-light-mode').addClass('navbar-dark navbar-dark-mode');
+                btn.text('☀️');
+            }
+
+            btn.click(function () {
+                if (body.hasClass('light-mode')) {
+                    body.removeClass('light-mode').addClass('dark-mode');
+                    navbar.removeClass('navbar-light navbar-light-mode').addClass('navbar-dark navbar-dark-mode');
+                    btn.text('☀️');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.removeClass('dark-mode').addClass('light-mode');
+                    navbar.removeClass('navbar-dark navbar-dark-mode').addClass('navbar-light navbar-light-mode');
+                    btn.text('🌙');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

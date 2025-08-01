@@ -1,44 +1,41 @@
-﻿<%@ Page Title="Home Page" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="ReforestacionComunitaria._Default" %>
+﻿<%@ Page Language="vb" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="ReforestacionComunitaria.Default" MasterPageFile="~/Site.master" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Panel de Control - Reforestación Comunitaria
+</asp:Content>
 
-    <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <h1 class="dashboard-title text-center mb-5">Panel de Control - Reforestación Comunitaria</h1>
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success h-100" style="cursor:pointer" onclick="location.href='Proyecto.aspx';">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h4 class="card-title">Proyectos</h4>
+                    <p class="card-text">Gestiona los proyectos de reforestación.</p>
+                    <i class="bi bi-tree-fill" style="font-size: 3rem;"></i>
+                </div>
+            </div>
         </div>
-    </main>
 
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary h-100" style="cursor:pointer" onclick="location.href='Comunidad.aspx';">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h4 class="card-title">Comunidades</h4>
+                    <p class="card-text">Administra las comunidades involucradas.</p>
+                    <i class="bi bi-people-fill" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-info h-100" style="cursor:pointer" onclick="location.href='Especie.aspx';">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h4 class="card-title">Especies</h4>
+                    <p class="card-text">Gestiona las especies de árboles.</p>
+                    <i class="bi bi-leaf-fill" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
