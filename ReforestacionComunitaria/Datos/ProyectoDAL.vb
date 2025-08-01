@@ -1,15 +1,15 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class ProyectoDAL
-    Public Shared Function ObtenerTodos() As List(Of ProyectoRe)
-        Dim lista As New List(Of ProyectoRe)
-        Dim query As String = "SELECT * FROM ProyectoReforestacion"
+    Public Shared Function ObtenerPorId(id As Integer) As ProyectoRe
+        Dim query As String = "SELECT * FROM ProyectoReforestacion WHERE Id = @Id"
         Using con As New SqlConnection(Conexion.Cadena)
             Using cmd As New SqlCommand(query, con)
+                cmd.Parameters.AddWithValue("@Id", id)
                 con.Open()
-                Dim reader = cmd.ExecuteReader()
-                While reader.Read()
-                    lista.Add(New ProyectoRe With {
+                Using reader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        Return New ProyectoRe With {
                         .Id = CInt(reader("Id")),
                         .Nombre = reader("Nombre").ToString(),
                         .Descripcion = reader("Descripcion").ToString(),
@@ -20,11 +20,13 @@ Public Class ProyectoDAL
                         .ComunidadId = CInt(reader("ComunidadId")),
                         .FechaCreacion = CDate(reader("FechaCreacion")),
                         .FechaActualizacion = CDate(reader("FechaActualizacion"))
-                    })
-                End While
+                    }
+                    Else
+                        Return Nothing
+                    End If
+                End Using
             End Using
         End Using
-        Return lista
     End Function
 
     Public Shared Sub Insertar(proyecto As ProyectoRe)
@@ -44,5 +46,30 @@ Public Class ProyectoDAL
         End Using
     End Sub
 
-    ' También puedo hacerte Actualizar() y Eliminar() si me confirmas.
+    Public Shared Sub Actualizar(proyecto As ProyectoRe)
+        Dim query As String = "UPDATE ProyectoReforestacion SET " &
+                              "Nombre = @Nombre, " &
+                              "Descripcion = @Descripcion, " &
+                              "FechaInicio = @FechaInicio, " &
+                              "FechaFin = @FechaFin, " &
+                              "DocumentoRuta = @DocumentoRuta, " &
+                              "EspecieId = @EspecieId, " &
+                              "ComunidadId = @ComunidadId, " &
+                              "FechaActualizacion = GETDATE() " &
+                              "WHERE Id = @Id"
+        Using con As New SqlConnection(Conexion.Cadena)
+            Using cmd As New SqlCommand(query, con)
+                cmd.Parameters.AddWithValue("@Id", proyecto.Id)
+                cmd.Parameters.AddWithValue("@Nombre", proyecto.Nombre)
+                cmd.Parameters.AddWithValue("@Descripcion", proyecto.Descripcion)
+                cmd.Parameters.AddWithValue("@FechaInicio", proyecto.FechaInicio)
+                cmd.Parameters.AddWithValue("@FechaFin", proyecto.FechaFin)
+                cmd.Parameters.AddWithValue("@DocumentoRuta", proyecto.DocumentoRuta)
+                cmd.Parameters.AddWithValue("@EspecieId", proyecto.EspecieId)
+                cmd.Parameters.AddWithValue("@ComunidadId", proyecto.ComunidadId)
+                con.Open()
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
 End Class
