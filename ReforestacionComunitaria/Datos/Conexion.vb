@@ -2,8 +2,10 @@
 Imports System.Data.SqlClient
 
 Public Class Conexion
-    Public Shared Function ObtenerConexion() As SqlConnection
-        Dim conexion As New SqlConnection(ConfigurationManager.ConnectionStrings("ConexionCatalogo").ConnectionString)
-        Return conexion
-    End Function
+    Public Shared ReadOnly Property Cadena As String
+        Get
+            Return "Data Source=.\SQLEXPRESS;Initial Catalog=TuBaseDeDatos;Integrated Security=True"
+        End Get
+    End Property
 End Class
+
