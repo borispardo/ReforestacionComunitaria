@@ -295,7 +295,9 @@
     </Compile>
     <Compile Include="Entidades\Comunidad.vb" />
     <Compile Include="Entidades\Especie.vb" />
-    <Compile Include="Entidades\Proyecto.vb" />
+    <Compile Include="Entidades\Proyecto.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Especie.aspx.designer.vb">
       <DependentUpon>Especie.aspx</DependentUpon>
     </Compile>
